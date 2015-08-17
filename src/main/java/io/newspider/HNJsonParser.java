@@ -7,15 +7,18 @@ import java.net.URL;
 import com.google.gson.Gson;
 
 public class HNJsonParser extends Parser {
-	private Gson gson;
+	private final Gson gson;
+	private final String baseUrl;
+	
 	private StringBuilder allContent;
 	private long[] ids;
 
-	public HNJsonParser(String url) {
+	public HNJsonParser(String url, String baseUrl) {
 		super(url);
-		gson = new Gson();
-		allContent = null;
-		ids = null;
+		this.gson = new Gson();
+		this.baseUrl = baseUrl;
+		this.allContent = null;
+		this.ids = null;
 		extractAllLines();
 		buildObjects();
 	}
@@ -45,9 +48,8 @@ public class HNJsonParser extends Parser {
 	
 	@Override
 	protected void buildObjects() {
-		String baseUrl = "https://hacker-news.firebaseio.com/v0/item/";
 		for (long id : ids) {
-			parseUrl(baseUrl + id + ".json");
+			parseUrl(String.format(baseUrl, id));
 			NewSource newsObj = gson.fromJson(allContent.toString(),
 					NewSource.class);
 			newsObjs.add(newsObj);

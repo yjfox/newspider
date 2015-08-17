@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Parser {
-	protected String url;
+	protected final String url;
 	protected List<NewSource> newsObjs;
 
 	public Parser(String url) {

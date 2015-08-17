@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-Title: newspider
+Implementation-Version: 1.0-SNAPSHOT
+Implementation-Vendor-Id: io.newspider
+Build-Jdk: 1.7.0_79
+Built-By: jyin
+Created-By: Maven Integration for Eclipse
+
