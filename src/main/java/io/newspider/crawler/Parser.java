@@ -1,4 +1,4 @@
-package io.newspider;
+package io.newspider.crawler;
 
 import java.util.ArrayList;
 import java.util.List;

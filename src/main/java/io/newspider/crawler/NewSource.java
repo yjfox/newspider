@@ -1,17 +1,16 @@
-package io.newspider;
+package io.newspider.crawler;
 
 public class NewSource {
-	protected long id;
 	protected String title;
 	protected String url;
 	protected String source;
 
 	public NewSource() {
-		id = 0;
 		title = null;
 		url = null;
 		source = null;
 	}
+	
 	
 	public void setTitle(String title) {
 		this.title = title;

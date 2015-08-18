@@ -1,4 +1,4 @@
-package io.newspider;
+package io.newspider.crawler;
 
 import java.io.IOException;
 import org.jsoup.Jsoup;
@@ -7,15 +7,17 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class HtmlParser extends Parser {
+	private final String source;
 	private Elements allLines;
 
-	public HtmlParser(String url, String[] filters) {
+	public HtmlParser(String source, String url, String[] filters) {
 		super(url);
+		this.source = source;
 		this.allLines = null;
 		extractAllLines(filters);
 		buildObjects();
 	}
-	
+
 	private Document parseUrl() {
 		Document doc = null;
 		try {
@@ -26,7 +28,7 @@ public class HtmlParser extends Parser {
 		}
 		return doc;
 	}
-	
+
 	private void extractAllLines(String[] filters) {
 		Document doc = parseUrl();
 		if (filters.length == 0) {
@@ -43,7 +45,17 @@ public class HtmlParser extends Parser {
 		for (Element line : allLines) {
 			NewSource newObj = new NewSource();
 			newObj.setTitle(line.text());
-			newObj.setUrl(line.select("a").attr("href"));
+			String targetUrl = line.select("a").attr("href");
+			//take care of relative path
+			if (targetUrl.charAt(0) == '/') {
+				if (url.charAt(url.length() - 1) == '/') {
+					targetUrl = url + targetUrl.substring(1);
+				} else {
+					targetUrl = url + targetUrl;
+				}
+			}
+			newObj.setUrl(targetUrl);
+			newObj.setSource(source);
 			newsObjs.add(newObj);
 		}
 	}

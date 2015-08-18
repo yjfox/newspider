@@ -1,4 +1,4 @@
-package io.newspider;
+package io.newspider.crawler;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,20 +9,23 @@ import com.google.gson.Gson;
 public class HNJsonParser extends Parser {
 	private final Gson gson;
 	private final String baseUrl;
-	
+	private final String source;
+
 	private StringBuilder allContent;
 	private long[] ids;
 
-	public HNJsonParser(String url, String baseUrl) {
+	public HNJsonParser(String source, String url, String baseUrl) {
 		super(url);
 		this.gson = new Gson();
 		this.baseUrl = baseUrl;
+		this.source = source;
+		
 		this.allContent = null;
 		this.ids = null;
 		extractAllLines();
 		buildObjects();
 	}
-	
+
 	private void extractAllLines() {
 		parseUrl(url);
 		ids = gson.fromJson(allContent.toString(), long[].class);
@@ -45,13 +48,14 @@ public class HNJsonParser extends Parser {
 			// log!
 		}
 	}
-	
+
 	@Override
 	protected void buildObjects() {
-		for (long id : ids) {
-			parseUrl(String.format(baseUrl, id));
+		for (int i = 0; i < ids.length && i < 10; i++) {
+			parseUrl(String.format(baseUrl, ids[i]));
 			NewSource newsObj = gson.fromJson(allContent.toString(),
 					NewSource.class);
+			newsObj.setSource(source);
 			newsObjs.add(newsObj);
 		}
 	}
