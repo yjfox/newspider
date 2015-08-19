@@ -9,21 +9,21 @@ import redis.clients.jedis.JedisPool;
 public class SingletonRedisConnector {
 	private static JedisPool pool;
 
-	private SingletonRedisConnector(String node) {
-		pool = new JedisPool(node);
+	private SingletonRedisConnector() {
 	}
 
-	public synchronized void close() {
-		if (pool != null) {
+	public static void destroy() {
+		synchronized (SingletonRedisConnector.class) {
+			pool.destroy();
 			pool = null;
 		}
 	}
 
-	public static JedisPool getConnection(String node) {
+	public static JedisPool getConnectionPool(String node) {
 		if (pool == null) {
 			synchronized (SingletonRedisConnector.class) {
 				if (pool == null) {
-					new SingletonRedisConnector(node);
+					pool = new JedisPool(node);
 				}
 			}
 		}

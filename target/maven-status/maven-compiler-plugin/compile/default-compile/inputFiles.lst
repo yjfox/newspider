@@ -1,7 +1,9 @@
-/home/jyin/foo/NewSpider/src/main/java/io/newspider/Greeting.java
-/home/jyin/foo/NewSpider/src/main/java/io/newspider/HtmlParser.java
-/home/jyin/foo/NewSpider/src/main/java/io/newspider/GreetingController.java
-/home/jyin/foo/NewSpider/src/main/java/io/newspider/Parser.java
-/home/jyin/foo/NewSpider/src/main/java/io/newspider/NewSource.java
-/home/jyin/foo/NewSpider/src/main/java/io/newspider/HNJsonParser.java
-/home/jyin/foo/NewSpider/src/main/java/io/newspider/NewspiderDemo.java
+/home/jyin/foo/NewSpider/src/main/java/io/newspider/database/RedisDataUtil.java
+/home/jyin/foo/NewSpider/src/main/java/io/newspider/crawler/HtmlParser.java
+/home/jyin/foo/NewSpider/src/main/java/io/newspider/restful/NewspiderDemo.java
+/home/jyin/foo/NewSpider/src/main/java/io/newspider/crawler/NewSource.java
+/home/jyin/foo/NewSpider/src/main/java/io/newspider/database/SingletonRedisConnector.java
+/home/jyin/foo/NewSpider/src/main/java/io/newspider/crawler/Parser.java
+/home/jyin/foo/NewSpider/src/main/java/io/newspider/crawler/ScheduledCrawlerRunner.java
+/home/jyin/foo/NewSpider/src/main/java/io/newspider/restful/RestfulController.java
+/home/jyin/foo/NewSpider/src/main/java/io/newspider/crawler/HNJsonParser.java
