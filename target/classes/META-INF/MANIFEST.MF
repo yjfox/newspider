@@ -3,7 +3,7 @@ Implementation-Title: newspider
 Implementation-Version: 1.0-SNAPSHOT
 Built-By: jyin
 Implementation-Vendor-Id: io.newspider
-Build-Jdk: 1.8.0_51
+Build-Jdk: 1.8.0_60
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.
 
